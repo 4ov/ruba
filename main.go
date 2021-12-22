@@ -2,7 +2,8 @@ package main
 
 import (
 	"fmt"
-	"plang/inter"
+
+	"github.com/4ov/ruba/inter"
 )
 
 func main() {
