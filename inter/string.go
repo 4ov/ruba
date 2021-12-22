@@ -15,10 +15,11 @@ func (s String) String() string {
 }
 
 func (s String) Access(child IType) IType {
-
 	switch child := child.(type) {
 	case *String:
 		return s.Proto.Get(child.Value)
+	case *Int:
+		return NewString(string(s.Value[child.Value]))
 	}
 	return nil
 }

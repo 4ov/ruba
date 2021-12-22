@@ -12,7 +12,7 @@ func exprStmt(stmt ast.ExprStmt, env *Env) IType {
 
 func declareStmt(stmt ast.DeclareStmt, env *Env) IType {
 	value := expression(stmt.Value, env)
-	env.Ruba.debug(fmt.Sprintf("%s :> %v", stmt.Name, value))
+	// env.Ruba.debug(fmt.Sprintf("%s :> %v", stmt.Name, value))
 	env.Set(stmt.Name, value)
 	return NewInt(0)
 }
@@ -23,7 +23,7 @@ func assignStmt(stmt ast.AssignStmt, env *Env) IType {
 		value := expression(stmt.Value, env)
 		if single {
 			env.Set(stmt.Name, value)
-			env.Ruba.debug(fmt.Sprintf("%s => %v", stmt.Name, value))
+			// env.Ruba.debug(fmt.Sprintf("%s => %v", stmt.Name, value))
 		} else {
 			root := env.Get(stmt.Name)
 			nestAssign(root, bakeArray(stmt.Chain, env), value)
@@ -49,6 +49,26 @@ func fnCallStmt(stmt ast.FnCallStmt, env *Env) IType {
 	switch target := target.(type) {
 	case *NativeFn:
 		return CallNativeFn(target, stmt.Args, env)
+	case *Fn:
+		return CallFn(target, stmt.Args, env)
+	default:
+		panic(fmt.Sprintf("%s is not a function", target))
 	}
+}
+
+func fnDeclareStmt(stmt ast.FnDeclareStmt, env *Env) IType {
+	args := []string{}
+	var restArg interface{}
+	if stmt.RestArg != nil {
+		restArg = RestArgValue{
+			Value: stmt.RestArg.(string),
+		}
+	}
+	for _, arg := range stmt.Args {
+		args = append(args, arg.(string))
+	}
+
+	env.Set(stmt.Name.(string), NewFn(stmt.Name.(string), args, restArg, stmt.Body))
+
 	return nil
 }

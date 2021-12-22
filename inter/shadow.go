@@ -13,9 +13,10 @@ func Exec(tree []interface{}, env *Env) IType {
 			result = declareStmt(stmt, env)
 		case ast.AssignStmt:
 			result = assignStmt(stmt, env)
-
 		case ast.FnCallStmt:
 			fnCallStmt(stmt, env)
+		case ast.FnDeclareStmt:
+			fnDeclareStmt(stmt, env)
 		case ast.ExprStmt:
 			result = exprStmt(stmt, env)
 		}

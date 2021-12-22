@@ -71,7 +71,7 @@ func New() *Ruba {
 	result := &Ruba{
 		Env: env,
 	}
-	env.Ruba = result
+	// env.Ruba = result
 	result.Options = Options{
 		AllowEval:   true,
 		AllowImport: true,
