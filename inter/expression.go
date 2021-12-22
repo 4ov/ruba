@@ -30,6 +30,8 @@ func expression(expr ast.Expression, env *Env) IType {
 		return argExpr(expr, env)
 	case string:
 		return NewString(expr)
+	case ast.FnCallExpr:
+		return fnCallExpr(expr, env)
 	default:
 		panic(fmt.Sprintf("unsupported expression %v", reflect.TypeOf(expr).Name()))
 	}
@@ -115,5 +117,27 @@ func argExpr(expr ast.ArgExpr, env *Env) IType {
 		default:
 			panic("spreadable argument must be array or string")
 		}
+	}
+}
+
+func fnCallExpr(stmt ast.FnCallExpr, env *Env) IType {
+	var target IType
+	//I GUESS THIS IS A BUG
+
+	switch raw := stmt.Target.(type) {
+	case string:
+		target = env.Get(raw)
+	default:
+		target = expression(raw, env)
+	}
+
+	//nilAsNull will turn go's nil into usable value from ruba
+	switch target := target.(type) {
+	case *NativeFn:
+		return nilAsNull(CallNativeFn(target, stmt.Args, env))
+	case *Fn:
+		return nilAsNull(CallFn(target, stmt.Args, env))
+	default:
+		panic(fmt.Sprintf("%s is not a function", target))
 	}
 }

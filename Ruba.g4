@@ -50,11 +50,11 @@ objectField: (STATIC = ident | '[' DYNAMIC = expr ']') ':' VALUE = expr;
 
 expr:
 	// COND = expr '?' TRUE = expr ':' FALSE = expr						# IfExpr
-	'(' EXPR = expr ')'											# GroupExpr
-	| ('true' | 'false')										# BoolExpr
-	| 'null'													# NullExpr
-	| NAME = expr '(' (ARGS += fnArg (',' ARGS += fnArg)*)? ')'	# CallExpr
-	| ident														# IdentExpr
+	'(' EXPR = expr ')'													# GroupExpr
+	| ('true' | 'false')												# BoolExpr
+	| 'null'															# NullExpr
+	| NAME = expr '(' (ARGS += fnArg (',' ARGS += fnArg)*)? ')'			# CallExpr
+	| ident																# IdentExpr
 	| PARENT = expr '[' CHILD = expr ']'								# IndexExpr
 	| PARENT = expr '.' CHILD = ident									# DotExpr
 	| intType															# IntExpr
@@ -62,7 +62,8 @@ expr:
 	| stringType														# StringExpr
 	| '!' expr															# NotExpr
 	| '-' expr															# NegativeExpr
-	| L = expr mathSign R = expr										# MathExpr
+	| L = expr S = ('*' | '/') R = expr									# MulOrDivExpr
+	| L = expr S = ('+' | '-') R = expr									# AddOrSubExpr
 	| L = expr '==' R = expr											# EqualExpr
 	| L = expr '!=' R = expr											# NotEqualExpr
 	| L = expr '>' R = expr												# GtExpr

@@ -95,6 +95,9 @@ type RubaListener interface {
 	// EnterIncExpr is called when entering the IncExpr production.
 	EnterIncExpr(c *IncExprContext)
 
+	// EnterAddOrSubExpr is called when entering the AddOrSubExpr production.
+	EnterAddOrSubExpr(c *AddOrSubExprContext)
+
 	// EnterGtExpr is called when entering the GtExpr production.
 	EnterGtExpr(c *GtExprContext)
 
@@ -131,6 +134,9 @@ type RubaListener interface {
 	// EnterObjectExpr is called when entering the ObjectExpr production.
 	EnterObjectExpr(c *ObjectExprContext)
 
+	// EnterMulOrDivExpr is called when entering the MulOrDivExpr production.
+	EnterMulOrDivExpr(c *MulOrDivExprContext)
+
 	// EnterCallExpr is called when entering the CallExpr production.
 	EnterCallExpr(c *CallExprContext)
 
@@ -139,9 +145,6 @@ type RubaListener interface {
 
 	// EnterNotExpr is called when entering the NotExpr production.
 	EnterNotExpr(c *NotExprContext)
-
-	// EnterMathExpr is called when entering the MathExpr production.
-	EnterMathExpr(c *MathExprContext)
 
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
@@ -230,6 +233,9 @@ type RubaListener interface {
 	// ExitIncExpr is called when exiting the IncExpr production.
 	ExitIncExpr(c *IncExprContext)
 
+	// ExitAddOrSubExpr is called when exiting the AddOrSubExpr production.
+	ExitAddOrSubExpr(c *AddOrSubExprContext)
+
 	// ExitGtExpr is called when exiting the GtExpr production.
 	ExitGtExpr(c *GtExprContext)
 
@@ -266,6 +272,9 @@ type RubaListener interface {
 	// ExitObjectExpr is called when exiting the ObjectExpr production.
 	ExitObjectExpr(c *ObjectExprContext)
 
+	// ExitMulOrDivExpr is called when exiting the MulOrDivExpr production.
+	ExitMulOrDivExpr(c *MulOrDivExprContext)
+
 	// ExitCallExpr is called when exiting the CallExpr production.
 	ExitCallExpr(c *CallExprContext)
 
@@ -274,7 +283,4 @@ type RubaListener interface {
 
 	// ExitNotExpr is called when exiting the NotExpr production.
 	ExitNotExpr(c *NotExprContext)
-
-	// ExitMathExpr is called when exiting the MathExpr production.
-	ExitMathExpr(c *MathExprContext)
 }

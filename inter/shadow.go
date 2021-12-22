@@ -7,6 +7,7 @@ import (
 func Exec(tree []interface{}, env *Env) IType {
 	var result IType = nil
 
+exec:
 	for _, stmt := range tree {
 		switch stmt := stmt.(type) {
 		case ast.DeclareStmt:
@@ -17,8 +18,12 @@ func Exec(tree []interface{}, env *Env) IType {
 			fnCallStmt(stmt, env)
 		case ast.FnDeclareStmt:
 			fnDeclareStmt(stmt, env)
+		case ast.ReturnStmt:
+			result = returnStmt(stmt, env)
+			break exec
 		case ast.ExprStmt:
 			result = exprStmt(stmt, env)
+
 		}
 	}
 	return result

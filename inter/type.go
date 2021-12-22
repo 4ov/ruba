@@ -5,6 +5,7 @@ const (
 	STRING
 	OBJECT
 	FUNCTION
+	NULL
 )
 
 type IType interface {

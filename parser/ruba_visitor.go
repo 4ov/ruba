@@ -95,6 +95,9 @@ type RubaVisitor interface {
 	// Visit a parse tree produced by RubaParser#IncExpr.
 	VisitIncExpr(ctx *IncExprContext) interface{}
 
+	// Visit a parse tree produced by RubaParser#AddOrSubExpr.
+	VisitAddOrSubExpr(ctx *AddOrSubExprContext) interface{}
+
 	// Visit a parse tree produced by RubaParser#GtExpr.
 	VisitGtExpr(ctx *GtExprContext) interface{}
 
@@ -131,6 +134,9 @@ type RubaVisitor interface {
 	// Visit a parse tree produced by RubaParser#ObjectExpr.
 	VisitObjectExpr(ctx *ObjectExprContext) interface{}
 
+	// Visit a parse tree produced by RubaParser#MulOrDivExpr.
+	VisitMulOrDivExpr(ctx *MulOrDivExprContext) interface{}
+
 	// Visit a parse tree produced by RubaParser#CallExpr.
 	VisitCallExpr(ctx *CallExprContext) interface{}
 
@@ -139,7 +145,4 @@ type RubaVisitor interface {
 
 	// Visit a parse tree produced by RubaParser#NotExpr.
 	VisitNotExpr(ctx *NotExprContext) interface{}
-
-	// Visit a parse tree produced by RubaParser#MathExpr.
-	VisitMathExpr(ctx *MathExprContext) interface{}
 }

@@ -45,6 +45,13 @@ func reverseEnvStack(stack []*Env) []*Env {
 	return stack
 }
 
+func nilAsNull(value interface{}) IType {
+	if value == nil {
+		return NewNull()
+	}
+	return value.(IType)
+}
+
 // func keyable(value IType) bool {
 // 	switch value := value.(type) {
 // 	case Int:

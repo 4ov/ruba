@@ -276,14 +276,25 @@ func (v *Visitor) VisitObjectExpr(ctx *parser.ObjectExprContext) interface{} {
 	return result
 }
 
-func (v *Visitor) VisitMathExpr(ctx *parser.MathExprContext) interface{} {
+func (v *Visitor) VisitAddOrSubExpr(ctx *parser.AddOrSubExprContext) interface{} {
 	left := ctx.L.Accept(v).(Expression)
 	right := ctx.R.Accept(v).(Expression)
 
 	return MathExpr{
 		Left:     left,
 		Right:    right,
-		Operator: ctx.MathSign().GetText(),
+		Operator: ctx.S.GetText(),
+	}
+}
+
+func (v *Visitor) VisitMulOrDivExpr(ctx *parser.MulOrDivExprContext) interface{} {
+	left := ctx.L.Accept(v).(Expression)
+	right := ctx.R.Accept(v).(Expression)
+
+	return MathExpr{
+		Left:     left,
+		Right:    right,
+		Operator: ctx.S.GetText(),
 	}
 }
 

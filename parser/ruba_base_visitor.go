@@ -124,6 +124,10 @@ func (v *BaseRubaVisitor) VisitIncExpr(ctx *IncExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseRubaVisitor) VisitAddOrSubExpr(ctx *AddOrSubExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseRubaVisitor) VisitGtExpr(ctx *GtExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -172,6 +176,10 @@ func (v *BaseRubaVisitor) VisitObjectExpr(ctx *ObjectExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseRubaVisitor) VisitMulOrDivExpr(ctx *MulOrDivExprContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseRubaVisitor) VisitCallExpr(ctx *CallExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -181,9 +189,5 @@ func (v *BaseRubaVisitor) VisitIntExpr(ctx *IntExprContext) interface{} {
 }
 
 func (v *BaseRubaVisitor) VisitNotExpr(ctx *NotExprContext) interface{} {
-	return v.VisitChildren(ctx)
-}
-
-func (v *BaseRubaVisitor) VisitMathExpr(ctx *MathExprContext) interface{} {
 	return v.VisitChildren(ctx)
 }

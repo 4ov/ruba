@@ -30,4 +30,5 @@ func (i Int) Access(child IType) IType {
 
 func NewInt(v int) *Int {
 	return &Int{Value: v, Proto: NewObject(ObjectValue{})}
+
 }

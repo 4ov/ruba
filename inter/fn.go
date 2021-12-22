@@ -51,6 +51,10 @@ func CallFn(f *Fn, args []ast.Expression, env *Env) IType {
 			}
 
 		}
+	} else {
+		for _, argName := range f.Args {
+			fnEnv.Set(argName, NewNull())
+		}
 	}
 	if f.RestArg != nil {
 		fnEnv.Set(f.RestArg.(RestArgValue).Value, NewArray(callArgs))

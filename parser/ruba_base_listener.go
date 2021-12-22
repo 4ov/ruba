@@ -195,6 +195,12 @@ func (s *BaseRubaListener) EnterIncExpr(ctx *IncExprContext) {}
 // ExitIncExpr is called when production IncExpr is exited.
 func (s *BaseRubaListener) ExitIncExpr(ctx *IncExprContext) {}
 
+// EnterAddOrSubExpr is called when production AddOrSubExpr is entered.
+func (s *BaseRubaListener) EnterAddOrSubExpr(ctx *AddOrSubExprContext) {}
+
+// ExitAddOrSubExpr is called when production AddOrSubExpr is exited.
+func (s *BaseRubaListener) ExitAddOrSubExpr(ctx *AddOrSubExprContext) {}
+
 // EnterGtExpr is called when production GtExpr is entered.
 func (s *BaseRubaListener) EnterGtExpr(ctx *GtExprContext) {}
 
@@ -267,6 +273,12 @@ func (s *BaseRubaListener) EnterObjectExpr(ctx *ObjectExprContext) {}
 // ExitObjectExpr is called when production ObjectExpr is exited.
 func (s *BaseRubaListener) ExitObjectExpr(ctx *ObjectExprContext) {}
 
+// EnterMulOrDivExpr is called when production MulOrDivExpr is entered.
+func (s *BaseRubaListener) EnterMulOrDivExpr(ctx *MulOrDivExprContext) {}
+
+// ExitMulOrDivExpr is called when production MulOrDivExpr is exited.
+func (s *BaseRubaListener) ExitMulOrDivExpr(ctx *MulOrDivExprContext) {}
+
 // EnterCallExpr is called when production CallExpr is entered.
 func (s *BaseRubaListener) EnterCallExpr(ctx *CallExprContext) {}
 
@@ -284,9 +296,3 @@ func (s *BaseRubaListener) EnterNotExpr(ctx *NotExprContext) {}
 
 // ExitNotExpr is called when production NotExpr is exited.
 func (s *BaseRubaListener) ExitNotExpr(ctx *NotExprContext) {}
-
-// EnterMathExpr is called when production MathExpr is entered.
-func (s *BaseRubaListener) EnterMathExpr(ctx *MathExprContext) {}
-
-// ExitMathExpr is called when production MathExpr is exited.
-func (s *BaseRubaListener) ExitMathExpr(ctx *MathExprContext) {}

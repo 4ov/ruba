@@ -72,3 +72,10 @@ func fnDeclareStmt(stmt ast.FnDeclareStmt, env *Env) IType {
 
 	return nil
 }
+
+func returnStmt(stmt ast.ReturnStmt, env *Env) IType {
+	if stmt.Value == nil {
+		return NewNull()
+	}
+	return expression(stmt.Value, env)
+}
