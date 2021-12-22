@@ -12,6 +12,10 @@ func expression(expr ast.Expression, env *Env) IType {
 	switch expr := expr.(type) {
 	case ast.IntExpr:
 		return intExpr(expr)
+	case ast.FloatExpr:
+		return floatExpr(expr)
+	case ast.BoolExpr:
+		return boolExpr(expr)
 	case ast.MathExpr:
 		return mathExpr(expr, env)
 	case ast.IdentExpr:
@@ -32,6 +36,8 @@ func expression(expr ast.Expression, env *Env) IType {
 		return NewString(expr)
 	case ast.FnCallExpr:
 		return fnCallExpr(expr, env)
+	case ast.EqualExpr:
+		return equalExpr(expr, env)
 	default:
 		panic(fmt.Sprintf("unsupported expression %v", reflect.TypeOf(expr).Name()))
 	}
@@ -43,6 +49,19 @@ func intExpr(expr ast.IntExpr) IType {
 		panic(err)
 	}
 	return NewInt(i)
+}
+
+func floatExpr(expr ast.FloatExpr) IType {
+	i, err := strconv.ParseFloat(expr.Value, 64)
+	if err != nil {
+		panic(err)
+	}
+	return NewFloat(i)
+}
+
+func boolExpr(expr ast.BoolExpr) IType {
+
+	return NewBool(expr.Value)
 }
 
 func mathExpr(expr ast.MathExpr, env *Env) IType {
@@ -140,4 +159,11 @@ func fnCallExpr(stmt ast.FnCallExpr, env *Env) IType {
 	default:
 		panic(fmt.Sprintf("%s is not a function", target))
 	}
+}
+
+func equalExpr(expr ast.EqualExpr, env *Env) IType {
+	l := expression(expr.Left, env)
+	r := expression(expr.Right, env)
+
+	return NewBool(l.Equal(r))
 }

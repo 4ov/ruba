@@ -6,7 +6,6 @@ import (
 
 func Exec(tree []interface{}, env *Env) IType {
 	var result IType = nil
-
 exec:
 	for _, stmt := range tree {
 		switch stmt := stmt.(type) {

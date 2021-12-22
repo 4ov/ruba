@@ -21,6 +21,31 @@ func (a Array) String() string {
 	return fmt.Sprintf("Array(%v)", a.Value)
 }
 
+func (a Array) Equal(other IType) bool {
+	switch other := other.(type) {
+	case *Array:
+		return reflect.DeepEqual(a.Value, other.Value)
+	default:
+		return false
+	}
+}
+
+func (a Array) Gt(other IType) bool {
+	return false
+}
+
+func (a Array) Gte(other IType) bool {
+	return false
+}
+
+func (a Array) Lt(other IType) bool {
+	return false
+}
+
+func (a Array) Lte(other IType) bool {
+	return false
+}
+
 func (a Array) Access(child IType) IType {
 	switch child := child.(type) {
 	case *Int:

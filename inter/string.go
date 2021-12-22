@@ -24,6 +24,46 @@ func (s String) Access(child IType) IType {
 	return nil
 }
 
+func (s String) Equal(other IType) bool {
+	switch other := other.(type) {
+	case *String:
+		return s.Value == other.Value
+	}
+	return false
+}
+
+func (s String) Gt(other IType) bool {
+	switch other := other.(type) {
+	case *String:
+		return s.Value > other.Value
+	}
+	return false
+}
+
+func (s String) Gte(other IType) bool {
+	switch other := other.(type) {
+	case *String:
+		return s.Value >= other.Value
+	}
+	return false
+}
+
+func (s String) Lt(other IType) bool {
+	switch other := other.(type) {
+	case *String:
+		return s.Value < other.Value
+	}
+	return false
+}
+
+func (s String) Lte(other IType) bool {
+	switch other := other.(type) {
+	case *String:
+		return s.Value <= other.Value
+	}
+	return false
+}
+
 func NewString(v string) *String {
 	return &String{Value: v, Proto: NewObject(ObjectValue{
 		"len": NewInt(len(v)),

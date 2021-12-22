@@ -16,6 +16,26 @@ func (n Null) Access(child IType) IType {
 	return NewNull()
 }
 
+func (n Null) Equal(other IType) bool {
+	return other.TypeOf() == NULL
+}
+
+func (n Null) Gt(other IType) bool {
+	return false
+}
+
+func (n Null) Gte(other IType) bool {
+	return false
+}
+
+func (n Null) Lt(other IType) bool {
+	return false
+}
+
+func (n Null) Lte(other IType) bool {
+	return false
+}
+
 func NewNull() *Null {
 	return &Null{}
 }

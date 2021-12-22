@@ -2,6 +2,7 @@ package inter
 
 import (
 	"fmt"
+	"reflect"
 )
 
 type ObjectValue = map[string]IType
@@ -24,10 +25,35 @@ func (o *Object) Set(key string, value IType) {
 	o.Value[key] = value
 }
 
-func (o *Object) ChainGet(chain []IType) IType {
-	fmt.Println(chain)
-	return nil
+// func (o *Object) ChainGet(chain []IType) IType {
+// 	fmt.Println(chain)
+// 	return nil
+// }
+
+func (o Object) Equal(other IType) bool {
+	switch other := other.(type) {
+	case *Object:
+		return reflect.DeepEqual(o.Value, other.Value)
+	}
+	return false
 }
+
+func (o Object) Gt(other IType) bool {
+	return false
+}
+
+func (o Object) Gte(other IType) bool {
+	return false
+}
+
+func (o Object) Lt(other IType) bool {
+	return false
+}
+
+func (o Object) Lte(other IType) bool {
+	return false
+}
+
 func (o Object) Access(child IType) IType {
 
 	switch child := child.(type) {

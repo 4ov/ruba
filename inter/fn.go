@@ -2,6 +2,7 @@ package inter
 
 import (
 	"fmt"
+	"reflect"
 
 	"github.com/4ov/ruba/ast"
 )
@@ -28,6 +29,26 @@ func (f Fn) TypeOf() int {
 
 func (f Fn) Access(child IType) IType {
 	return f.Proto.Access(child)
+}
+
+func (f Fn) Equal(other IType) bool {
+	return reflect.DeepEqual(f, other)
+}
+
+func (f Fn) Gt(other IType) bool {
+	return false
+}
+
+func (f Fn) Gte(other IType) bool {
+	return false
+}
+
+func (f Fn) Lt(other IType) bool {
+	return false
+}
+
+func (f Fn) Lte(other IType) bool {
+	return false
 }
 
 func NewFn(name string, args []string, restArg interface{}, body []interface{}) *Fn {

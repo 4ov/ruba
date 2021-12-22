@@ -1,9 +1,15 @@
 package inter
 
+const (
+	MAIN_ENV = iota
+	FN_ENV
+)
+
 type Env struct {
 	// Ruba  *Ruba
 	Stack []*Env
 	Store *Object
+	Type  int
 }
 
 func (env *Env) CreateVar(name string, value IType) {
@@ -31,17 +37,29 @@ func (env *Env) Get(key string) IType {
 		} else {
 			return nil
 		}
+
 	}
+}
+
+func (env *Env) InFnEnv() bool {
+	for _, e := range reverseEnvStack(append(env.Stack, env)) {
+		if e.Type == FN_ENV {
+			return true
+		}
+	}
+	return false
 }
 
 func NewEnv() *Env {
 	return &Env{
+		Type:  MAIN_ENV,
 		Store: NewObject(ObjectValue{}),
 	}
 }
 
 func NewFnEnv(name string, parent *Env) *Env {
 	return &Env{
+		Type:  FN_ENV,
 		Stack: append(parent.Stack, parent),
 		Store: NewObject(ObjectValue{}),
 	}

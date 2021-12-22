@@ -74,8 +74,13 @@ func fnDeclareStmt(stmt ast.FnDeclareStmt, env *Env) IType {
 }
 
 func returnStmt(stmt ast.ReturnStmt, env *Env) IType {
-	if stmt.Value == nil {
-		return NewNull()
+	if env.InFnEnv() {
+		if stmt.Value == nil {
+			return NewNull()
+		}
+		return expression(stmt.Value, env)
+	} else {
+		panic("Cannot use return statement outside of function")
 	}
-	return expression(stmt.Value, env)
+
 }

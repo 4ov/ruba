@@ -28,6 +28,56 @@ func (i Int) Access(child IType) IType {
 	return nil
 }
 
+func (i Int) Equal(other IType) bool {
+	switch other := other.(type) {
+	case *Int:
+		return i.Value == other.Value
+	case *Float:
+		return float64(i.Value) == other.Value
+	}
+	return false
+}
+
+func (i Int) Gt(other IType) bool {
+	switch other := other.(type) {
+	case *Int:
+		return i.Value > other.Value
+	case *Float:
+		return float64(i.Value) > other.Value
+	}
+	return false
+}
+
+func (i Int) Gte(other IType) bool {
+	switch other := other.(type) {
+	case *Int:
+		return i.Value >= other.Value
+	case *Float:
+		return float64(i.Value) >= other.Value
+	}
+	return false
+}
+
+func (i Int) Lt(other IType) bool {
+	switch other := other.(type) {
+	case *Int:
+		return i.Value < other.Value
+	case *Float:
+		return float64(i.Value) < other.Value
+	}
+	return false
+}
+
+func (i Int) Lte(other IType) bool {
+	switch other := other.(type) {
+	case *Int:
+		return i.Value <= other.Value
+	case *Float:
+		return float64(i.Value) <= other.Value
+	}
+	return false
+}
+
 func NewInt(v int) *Int {
 	return &Int{Value: v, Proto: NewObject(ObjectValue{})}
 

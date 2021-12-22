@@ -2,6 +2,7 @@ package inter
 
 import (
 	"fmt"
+	"reflect"
 
 	"github.com/4ov/ruba/ast"
 )
@@ -33,6 +34,22 @@ func NewNativeFn(name string, fn func(env *Env, args []IType) IType) *NativeFn {
 			// "length": NewInt(1),
 		}),
 	}
+}
+
+func (n NativeFn) Equal(other IType) bool {
+	return reflect.DeepEqual(n, other)
+}
+func (n NativeFn) Gt(other IType) bool {
+	return reflect.DeepEqual(n, other)
+}
+func (n NativeFn) Gte(other IType) bool {
+	return reflect.DeepEqual(n, other)
+}
+func (n NativeFn) Lt(other IType) bool {
+	return reflect.DeepEqual(n, other)
+}
+func (n NativeFn) Lte(other IType) bool {
+	return reflect.DeepEqual(n, other)
 }
 
 func CallNativeFn(target *NativeFn, args []ast.Expression, env *Env) IType {
