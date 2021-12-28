@@ -83,26 +83,44 @@ type RubaListener interface {
 	// EnterEqualExpr is called when entering the EqualExpr production.
 	EnterEqualExpr(c *EqualExprContext)
 
-	// EnterIdentExpr is called when entering the IdentExpr production.
-	EnterIdentExpr(c *IdentExprContext)
-
-	// EnterDecExpr is called when entering the DecExpr production.
-	EnterDecExpr(c *DecExprContext)
-
 	// EnterFloatExpr is called when entering the FloatExpr production.
 	EnterFloatExpr(c *FloatExprContext)
-
-	// EnterIncExpr is called when entering the IncExpr production.
-	EnterIncExpr(c *IncExprContext)
-
-	// EnterAddOrSubExpr is called when entering the AddOrSubExpr production.
-	EnterAddOrSubExpr(c *AddOrSubExprContext)
 
 	// EnterGtExpr is called when entering the GtExpr production.
 	EnterGtExpr(c *GtExprContext)
 
 	// EnterLtExpr is called when entering the LtExpr production.
 	EnterLtExpr(c *LtExprContext)
+
+	// EnterIndexExpr is called when entering the IndexExpr production.
+	EnterIndexExpr(c *IndexExprContext)
+
+	// EnterNullExpr is called when entering the NullExpr production.
+	EnterNullExpr(c *NullExprContext)
+
+	// EnterObjectExpr is called when entering the ObjectExpr production.
+	EnterObjectExpr(c *ObjectExprContext)
+
+	// EnterCallExpr is called when entering the CallExpr production.
+	EnterCallExpr(c *CallExprContext)
+
+	// EnterNotExpr is called when entering the NotExpr production.
+	EnterNotExpr(c *NotExprContext)
+
+	// EnterTernaryExpr is called when entering the TernaryExpr production.
+	EnterTernaryExpr(c *TernaryExprContext)
+
+	// EnterIdentExpr is called when entering the IdentExpr production.
+	EnterIdentExpr(c *IdentExprContext)
+
+	// EnterDecExpr is called when entering the DecExpr production.
+	EnterDecExpr(c *DecExprContext)
+
+	// EnterIncExpr is called when entering the IncExpr production.
+	EnterIncExpr(c *IncExprContext)
+
+	// EnterAddOrSubExpr is called when entering the AddOrSubExpr production.
+	EnterAddOrSubExpr(c *AddOrSubExprContext)
 
 	// EnterDotExpr is called when entering the DotExpr production.
 	EnterDotExpr(c *DotExprContext)
@@ -112,12 +130,6 @@ type RubaListener interface {
 
 	// EnterLteExpr is called when entering the LteExpr production.
 	EnterLteExpr(c *LteExprContext)
-
-	// EnterIndexExpr is called when entering the IndexExpr production.
-	EnterIndexExpr(c *IndexExprContext)
-
-	// EnterNullExpr is called when entering the NullExpr production.
-	EnterNullExpr(c *NullExprContext)
 
 	// EnterGteExpr is called when entering the GteExpr production.
 	EnterGteExpr(c *GteExprContext)
@@ -131,20 +143,11 @@ type RubaListener interface {
 	// EnterArrayExpr is called when entering the ArrayExpr production.
 	EnterArrayExpr(c *ArrayExprContext)
 
-	// EnterObjectExpr is called when entering the ObjectExpr production.
-	EnterObjectExpr(c *ObjectExprContext)
-
 	// EnterMulOrDivExpr is called when entering the MulOrDivExpr production.
 	EnterMulOrDivExpr(c *MulOrDivExprContext)
 
-	// EnterCallExpr is called when entering the CallExpr production.
-	EnterCallExpr(c *CallExprContext)
-
 	// EnterIntExpr is called when entering the IntExpr production.
 	EnterIntExpr(c *IntExprContext)
-
-	// EnterNotExpr is called when entering the NotExpr production.
-	EnterNotExpr(c *NotExprContext)
 
 	// ExitProgram is called when exiting the program production.
 	ExitProgram(c *ProgramContext)
@@ -221,26 +224,44 @@ type RubaListener interface {
 	// ExitEqualExpr is called when exiting the EqualExpr production.
 	ExitEqualExpr(c *EqualExprContext)
 
-	// ExitIdentExpr is called when exiting the IdentExpr production.
-	ExitIdentExpr(c *IdentExprContext)
-
-	// ExitDecExpr is called when exiting the DecExpr production.
-	ExitDecExpr(c *DecExprContext)
-
 	// ExitFloatExpr is called when exiting the FloatExpr production.
 	ExitFloatExpr(c *FloatExprContext)
-
-	// ExitIncExpr is called when exiting the IncExpr production.
-	ExitIncExpr(c *IncExprContext)
-
-	// ExitAddOrSubExpr is called when exiting the AddOrSubExpr production.
-	ExitAddOrSubExpr(c *AddOrSubExprContext)
 
 	// ExitGtExpr is called when exiting the GtExpr production.
 	ExitGtExpr(c *GtExprContext)
 
 	// ExitLtExpr is called when exiting the LtExpr production.
 	ExitLtExpr(c *LtExprContext)
+
+	// ExitIndexExpr is called when exiting the IndexExpr production.
+	ExitIndexExpr(c *IndexExprContext)
+
+	// ExitNullExpr is called when exiting the NullExpr production.
+	ExitNullExpr(c *NullExprContext)
+
+	// ExitObjectExpr is called when exiting the ObjectExpr production.
+	ExitObjectExpr(c *ObjectExprContext)
+
+	// ExitCallExpr is called when exiting the CallExpr production.
+	ExitCallExpr(c *CallExprContext)
+
+	// ExitNotExpr is called when exiting the NotExpr production.
+	ExitNotExpr(c *NotExprContext)
+
+	// ExitTernaryExpr is called when exiting the TernaryExpr production.
+	ExitTernaryExpr(c *TernaryExprContext)
+
+	// ExitIdentExpr is called when exiting the IdentExpr production.
+	ExitIdentExpr(c *IdentExprContext)
+
+	// ExitDecExpr is called when exiting the DecExpr production.
+	ExitDecExpr(c *DecExprContext)
+
+	// ExitIncExpr is called when exiting the IncExpr production.
+	ExitIncExpr(c *IncExprContext)
+
+	// ExitAddOrSubExpr is called when exiting the AddOrSubExpr production.
+	ExitAddOrSubExpr(c *AddOrSubExprContext)
 
 	// ExitDotExpr is called when exiting the DotExpr production.
 	ExitDotExpr(c *DotExprContext)
@@ -250,12 +271,6 @@ type RubaListener interface {
 
 	// ExitLteExpr is called when exiting the LteExpr production.
 	ExitLteExpr(c *LteExprContext)
-
-	// ExitIndexExpr is called when exiting the IndexExpr production.
-	ExitIndexExpr(c *IndexExprContext)
-
-	// ExitNullExpr is called when exiting the NullExpr production.
-	ExitNullExpr(c *NullExprContext)
 
 	// ExitGteExpr is called when exiting the GteExpr production.
 	ExitGteExpr(c *GteExprContext)
@@ -269,18 +284,9 @@ type RubaListener interface {
 	// ExitArrayExpr is called when exiting the ArrayExpr production.
 	ExitArrayExpr(c *ArrayExprContext)
 
-	// ExitObjectExpr is called when exiting the ObjectExpr production.
-	ExitObjectExpr(c *ObjectExprContext)
-
 	// ExitMulOrDivExpr is called when exiting the MulOrDivExpr production.
 	ExitMulOrDivExpr(c *MulOrDivExprContext)
 
-	// ExitCallExpr is called when exiting the CallExpr production.
-	ExitCallExpr(c *CallExprContext)
-
 	// ExitIntExpr is called when exiting the IntExpr production.
 	ExitIntExpr(c *IntExprContext)
-
-	// ExitNotExpr is called when exiting the NotExpr production.
-	ExitNotExpr(c *NotExprContext)
 }

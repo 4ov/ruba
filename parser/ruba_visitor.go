@@ -83,26 +83,44 @@ type RubaVisitor interface {
 	// Visit a parse tree produced by RubaParser#EqualExpr.
 	VisitEqualExpr(ctx *EqualExprContext) interface{}
 
-	// Visit a parse tree produced by RubaParser#IdentExpr.
-	VisitIdentExpr(ctx *IdentExprContext) interface{}
-
-	// Visit a parse tree produced by RubaParser#DecExpr.
-	VisitDecExpr(ctx *DecExprContext) interface{}
-
 	// Visit a parse tree produced by RubaParser#FloatExpr.
 	VisitFloatExpr(ctx *FloatExprContext) interface{}
-
-	// Visit a parse tree produced by RubaParser#IncExpr.
-	VisitIncExpr(ctx *IncExprContext) interface{}
-
-	// Visit a parse tree produced by RubaParser#AddOrSubExpr.
-	VisitAddOrSubExpr(ctx *AddOrSubExprContext) interface{}
 
 	// Visit a parse tree produced by RubaParser#GtExpr.
 	VisitGtExpr(ctx *GtExprContext) interface{}
 
 	// Visit a parse tree produced by RubaParser#LtExpr.
 	VisitLtExpr(ctx *LtExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#IndexExpr.
+	VisitIndexExpr(ctx *IndexExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#NullExpr.
+	VisitNullExpr(ctx *NullExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#ObjectExpr.
+	VisitObjectExpr(ctx *ObjectExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#CallExpr.
+	VisitCallExpr(ctx *CallExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#NotExpr.
+	VisitNotExpr(ctx *NotExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#TernaryExpr.
+	VisitTernaryExpr(ctx *TernaryExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#IdentExpr.
+	VisitIdentExpr(ctx *IdentExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#DecExpr.
+	VisitDecExpr(ctx *DecExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#IncExpr.
+	VisitIncExpr(ctx *IncExprContext) interface{}
+
+	// Visit a parse tree produced by RubaParser#AddOrSubExpr.
+	VisitAddOrSubExpr(ctx *AddOrSubExprContext) interface{}
 
 	// Visit a parse tree produced by RubaParser#DotExpr.
 	VisitDotExpr(ctx *DotExprContext) interface{}
@@ -112,12 +130,6 @@ type RubaVisitor interface {
 
 	// Visit a parse tree produced by RubaParser#LteExpr.
 	VisitLteExpr(ctx *LteExprContext) interface{}
-
-	// Visit a parse tree produced by RubaParser#IndexExpr.
-	VisitIndexExpr(ctx *IndexExprContext) interface{}
-
-	// Visit a parse tree produced by RubaParser#NullExpr.
-	VisitNullExpr(ctx *NullExprContext) interface{}
 
 	// Visit a parse tree produced by RubaParser#GteExpr.
 	VisitGteExpr(ctx *GteExprContext) interface{}
@@ -131,18 +143,9 @@ type RubaVisitor interface {
 	// Visit a parse tree produced by RubaParser#ArrayExpr.
 	VisitArrayExpr(ctx *ArrayExprContext) interface{}
 
-	// Visit a parse tree produced by RubaParser#ObjectExpr.
-	VisitObjectExpr(ctx *ObjectExprContext) interface{}
-
 	// Visit a parse tree produced by RubaParser#MulOrDivExpr.
 	VisitMulOrDivExpr(ctx *MulOrDivExprContext) interface{}
 
-	// Visit a parse tree produced by RubaParser#CallExpr.
-	VisitCallExpr(ctx *CallExprContext) interface{}
-
 	// Visit a parse tree produced by RubaParser#IntExpr.
 	VisitIntExpr(ctx *IntExprContext) interface{}
-
-	// Visit a parse tree produced by RubaParser#NotExpr.
-	VisitNotExpr(ctx *NotExprContext) interface{}
 }

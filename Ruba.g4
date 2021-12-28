@@ -49,7 +49,6 @@ fnCall:
 objectField: (STATIC = ident | '[' DYNAMIC = expr ']') ':' VALUE = expr;
 
 expr:
-	// COND = expr '?' TRUE = expr ':' FALSE = expr						# IfExpr
 	'(' EXPR = expr ')'													# GroupExpr
 	| ('true' | 'false')												# BoolExpr
 	| 'null'															# NullExpr
@@ -73,7 +72,8 @@ expr:
 	| L = expr '++'														# IncExpr
 	| ident '--'														# DecExpr
 	| '[' (ELMS += expr (',' ELMS += expr)*)? ']'						# ArrayExpr
-	| '{' (ELMS += objectField (',' ELMS += objectField)* ','?)? '}'	# ObjectExpr;
+	| '{' (ELMS += objectField (',' ELMS += objectField)* ','?)? '}'	# ObjectExpr
+	| COND = expr '?' TRUE = expr ':' FALSE = expr								# TernaryExpr;
 
 //types
 Ident: [a-zA-Z_][a-zA-Z_0-9]*;

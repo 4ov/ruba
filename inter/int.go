@@ -78,6 +78,10 @@ func (i Int) Lte(other IType) bool {
 	return false
 }
 
+func (i Int) Bool() bool {
+	return i.Value != 0
+}
+
 func NewInt(v int) *Int {
 	return &Int{Value: v, Proto: NewObject(ObjectValue{})}
 

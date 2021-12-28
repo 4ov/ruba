@@ -38,6 +38,22 @@ func expression(expr ast.Expression, env *Env) IType {
 		return fnCallExpr(expr, env)
 	case ast.EqualExpr:
 		return equalExpr(expr, env)
+	case ast.NullExpr:
+		return nullExpr(expr)
+	case ast.NotExpr:
+		return notExpr(expr, env)
+	case ast.NotEqualExpr:
+		return notEqualExpr(expr, env)
+	case ast.GtExpr:
+		return gtExpr(expr, env)
+	case ast.GteExpr:
+		return gteExpr(expr, env)
+	case ast.LtExpr:
+		return ltExpr(expr, env)
+	case ast.LteExpr:
+		return lteExpr(expr, env)
+	case ast.TernaryExpr:
+		return ternaryExpr(expr, env)
 	default:
 		panic(fmt.Sprintf("unsupported expression %v", reflect.TypeOf(expr).Name()))
 	}
@@ -60,8 +76,21 @@ func floatExpr(expr ast.FloatExpr) IType {
 }
 
 func boolExpr(expr ast.BoolExpr) IType {
-
 	return NewBool(expr.Value)
+}
+
+func nullExpr(expr ast.NullExpr) IType {
+	return NewNull()
+}
+
+func ternaryExpr(expr ast.TernaryExpr, env *Env) IType {
+
+	cond := expression(expr.Cond, env).Bool()
+	if cond {
+		return expression(expr.True, env)
+	} else {
+		return expression(expr.False, env)
+	}
 }
 
 func mathExpr(expr ast.MathExpr, env *Env) IType {
@@ -72,8 +101,10 @@ func mathExpr(expr ast.MathExpr, env *Env) IType {
 		return Add(l, r)
 	case "*":
 		return Mul(l, r)
+	case "-":
+		return Sub(l, r)
 	default:
-		panic("not implemented")
+		panic("not implemented" + expr.Operator)
 	}
 
 }
@@ -83,7 +114,7 @@ func identExpr(expr ast.IdentExpr, env *Env) IType {
 }
 
 func dotExpr(expr ast.DotExpr, env *Env) IType {
-	fmt.Println(expr)
+	// fmt.Println(expr)
 	r := expression(expr.Parent, env).Access(expression(expr.Child, env))
 	return r
 }
@@ -164,6 +195,37 @@ func fnCallExpr(stmt ast.FnCallExpr, env *Env) IType {
 func equalExpr(expr ast.EqualExpr, env *Env) IType {
 	l := expression(expr.Left, env)
 	r := expression(expr.Right, env)
-
 	return NewBool(l.Equal(r))
+}
+
+func gtExpr(expr ast.GtExpr, env *Env) IType {
+	l := expression(expr.Left, env)
+	r := expression(expr.Right, env)
+	return NewBool(l.Gt(r))
+}
+
+func gteExpr(expr ast.GteExpr, env *Env) IType {
+	l := expression(expr.Left, env)
+	r := expression(expr.Right, env)
+	return NewBool(l.Gte(r))
+}
+func ltExpr(expr ast.LtExpr, env *Env) IType {
+	l := expression(expr.Left, env)
+	r := expression(expr.Right, env)
+	return NewBool(l.Lt(r))
+}
+func lteExpr(expr ast.LteExpr, env *Env) IType {
+	l := expression(expr.Left, env)
+	r := expression(expr.Right, env)
+	return NewBool(l.Lte(r))
+}
+
+func notEqualExpr(expr ast.NotEqualExpr, env *Env) IType {
+	l := expression(expr.Left, env)
+	r := expression(expr.Right, env)
+	return NewBool(!l.Equal(r))
+}
+
+func notExpr(expr ast.NotExpr, env *Env) IType {
+	return NewBool(!expression(expr.Value, env).Bool())
 }

@@ -20,6 +20,11 @@ exec:
 		case ast.ReturnStmt:
 			result = returnStmt(stmt, env)
 			break exec
+		case ast.IfStmt:
+			result = ifStmt(stmt, env)
+			if result != nil {
+				break exec
+			}
 		case ast.ExprStmt:
 			result = exprStmt(stmt, env)
 

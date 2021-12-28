@@ -64,6 +64,11 @@ func (s String) Lte(other IType) bool {
 	return false
 }
 
+func (s String) Bool() bool {
+
+	return s.Value != ""
+}
+
 func NewString(v string) *String {
 	return &String{Value: v, Proto: NewObject(ObjectValue{
 		"len": NewInt(len(v)),

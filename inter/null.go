@@ -36,6 +36,10 @@ func (n Null) Lte(other IType) bool {
 	return false
 }
 
+func (n Null) Bool() bool {
+	return false
+}
+
 func NewNull() *Null {
 	return &Null{}
 }

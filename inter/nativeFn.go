@@ -40,16 +40,20 @@ func (n NativeFn) Equal(other IType) bool {
 	return reflect.DeepEqual(n, other)
 }
 func (n NativeFn) Gt(other IType) bool {
-	return reflect.DeepEqual(n, other)
+	return false
 }
 func (n NativeFn) Gte(other IType) bool {
-	return reflect.DeepEqual(n, other)
+	return false
 }
 func (n NativeFn) Lt(other IType) bool {
-	return reflect.DeepEqual(n, other)
+	return false
 }
 func (n NativeFn) Lte(other IType) bool {
-	return reflect.DeepEqual(n, other)
+	return false
+}
+
+func (n NativeFn) Bool() bool {
+	return true
 }
 
 func CallNativeFn(target *NativeFn, args []ast.Expression, env *Env) IType {

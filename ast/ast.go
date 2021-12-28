@@ -328,6 +328,26 @@ func (v *Visitor) VisitGtExpr(ctx *parser.GtExprContext) interface{} {
 	}
 }
 
+func (v *Visitor) VisitLtExpr(ctx *parser.LtExprContext) interface{} {
+	left := ctx.L.Accept(v).(Expression)
+	right := ctx.R.Accept(v).(Expression)
+
+	return LtExpr{
+		Left:  left,
+		Right: right,
+	}
+}
+
+func (v *Visitor) VisitLteExpr(ctx *parser.LteExprContext) interface{} {
+	left := ctx.L.Accept(v).(Expression)
+	right := ctx.R.Accept(v).(Expression)
+
+	return LteExpr{
+		Left:  left,
+		Right: right,
+	}
+}
+
 func (v *Visitor) VisitGteExpr(ctx *parser.GteExprContext) interface{} {
 	left := ctx.L.Accept(v).(Expression)
 	right := ctx.R.Accept(v).(Expression)
@@ -341,6 +361,14 @@ func (v *Visitor) VisitGteExpr(ctx *parser.GteExprContext) interface{} {
 func (v *Visitor) VisitNotExpr(ctx *parser.NotExprContext) interface{} {
 	return NotExpr{
 		Value: ctx.Expr().Accept(v),
+	}
+}
+
+func (v *Visitor) VisitTernaryExpr(ctx *parser.TernaryExprContext) interface{} {
+	return TernaryExpr{
+		Cond:  ctx.COND.Accept(v),
+		True:  ctx.TRUE.Accept(v),
+		False: ctx.FALSE.Accept(v),
 	}
 }
 

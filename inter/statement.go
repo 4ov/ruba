@@ -84,3 +84,12 @@ func returnStmt(stmt ast.ReturnStmt, env *Env) IType {
 	}
 
 }
+
+func ifStmt(stmt ast.IfStmt, env *Env) IType {
+	ifEnv := NewIfEnv(env)
+	if expression(stmt.Cond, env).Bool() {
+		return Exec(stmt.Body, ifEnv)
+	}
+
+	return nil
+}

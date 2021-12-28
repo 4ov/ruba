@@ -46,6 +46,10 @@ func (a Array) Lte(other IType) bool {
 	return false
 }
 
+func (a Array) Bool() bool {
+	return true
+}
+
 func (a Array) Access(child IType) IType {
 	switch child := child.(type) {
 	case *Int:

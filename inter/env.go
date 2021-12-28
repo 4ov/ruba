@@ -1,15 +1,18 @@
 package inter
 
+import "fmt"
+
 const (
 	MAIN_ENV = iota
 	FN_ENV
+	IF_ENV
 )
 
 type Env struct {
 	// Ruba  *Ruba
-	Stack []*Env
-	Store *Object
-	Type  int
+	Parent *Env
+	Store  *Object
+	Type   int
 }
 
 func (env *Env) CreateVar(name string, value IType) {
@@ -28,24 +31,40 @@ func (env *Env) Has(key string) bool {
 	}
 }
 
+// func (env *Env) Get(key string) IType {
+// 	if r := env.Store.Get(key); r != nil {
+// 		return r
+// 	} else {
+// 		if len(env.Stack) > 0 {
+// 			fmt.Println()
+// 			return reverseEnvStack(env.Stack)[0].Get(key)
+// 		} else {
+// 			panic(fmt.Sprintf("%s not found", key))
+// 		}
+// 	}
+// }
+
 func (env *Env) Get(key string) IType {
+	var result IType
 	if r := env.Store.Get(key); r != nil {
 		return r
 	} else {
-		if len(env.Stack) > 0 {
-			return env.Stack[len(env.Stack)-1].Get(key)
-		} else {
-			return nil
+		if env.Parent != nil {
+			result = env.Parent.Get(key)
 		}
-
 	}
+	if result == nil {
+		panic(fmt.Sprintf("%s not found", key))
+	}
+	return result
 }
 
 func (env *Env) InFnEnv() bool {
-	for _, e := range reverseEnvStack(append(env.Stack, env)) {
-		if e.Type == FN_ENV {
-			return true
-		}
+	if env.Type == FN_ENV {
+		return true
+	}
+	if env.Parent != nil {
+		return env.Parent.InFnEnv()
 	}
 	return false
 }
@@ -59,8 +78,18 @@ func NewEnv() *Env {
 
 func NewFnEnv(name string, parent *Env) *Env {
 	return &Env{
-		Type:  FN_ENV,
-		Stack: append(parent.Stack, parent),
+		Type:   FN_ENV,
+		Parent: parent,
+		// Stack: append(parent.Stack, parent),
 		Store: NewObject(ObjectValue{}),
+	}
+}
+
+func NewIfEnv(parent *Env) *Env {
+	return &Env{
+		Type: IF_ENV,
+		// Stack: append(parent.Stack, parent),
+		Parent: parent,
+		Store:  NewObject(ObjectValue{}),
 	}
 }

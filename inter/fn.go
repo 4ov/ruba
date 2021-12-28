@@ -51,6 +51,10 @@ func (f Fn) Lte(other IType) bool {
 	return false
 }
 
+func (f Fn) Bool() bool {
+	return true
+}
+
 func NewFn(name string, args []string, restArg interface{}, body []interface{}) *Fn {
 	return &Fn{
 		Name:    name,

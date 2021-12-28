@@ -20,8 +20,26 @@ func main() {
 		return nil
 	}))
 
+	r.Env.Set("assert", inter.NewNativeFn("assert", func(env *inter.Env, args []inter.IType) inter.IType {
+		var r bool
+		if args[0].TypeOf() == inter.NULL {
+			r = false
+		} else {
+			r = true
+		}
+		return inter.NewBool(r)
+	}))
+
 	r.DoString(`
 		
+		func fib(n){
+			if n <= 1 {
+				return n
+			}
+			return fib(n-1) + fib(n-2)
+		}
+
+		print(fib(35))
 		
 		
 	`)

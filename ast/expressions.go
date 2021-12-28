@@ -105,9 +105,28 @@ type GteExpr struct {
 	Right Expression
 }
 
+type LtExpr struct {
+	Expression
+	Left  Expression
+	Right Expression
+}
+
+type LteExpr struct {
+	Expression
+	Left  Expression
+	Right Expression
+}
+
 type NotExpr struct {
 	Expression
 	Value Expression
+}
+
+type TernaryExpr struct {
+	Expression
+	Cond  Expression
+	True  Expression
+	False Expression
 }
 
 type SubExpr struct {

@@ -19,4 +19,5 @@ type IType interface {
 	Gte(other IType) bool
 	Lt(other IType) bool
 	Lte(other IType) bool
+	Bool() bool
 }

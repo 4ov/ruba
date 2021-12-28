@@ -54,6 +54,10 @@ func (o Object) Lte(other IType) bool {
 	return false
 }
 
+func (o Object) Bool() bool {
+	return true
+}
+
 func (o Object) Access(child IType) IType {
 
 	switch child := child.(type) {

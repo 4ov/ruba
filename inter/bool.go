@@ -46,6 +46,9 @@ func (b Bool) Lte(other IType) bool {
 func (b Bool) Lt(other IType) bool {
 	return false
 }
+func (b Bool) Bool() bool {
+	return b.Value
+}
 
 func NewBool(v bool) *Bool {
 	return &Bool{Value: v, Proto: NewObject(ObjectValue{})}

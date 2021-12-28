@@ -1,3 +1,3 @@
 
 
-* (syntax): function decleration
+* ~~(syntax): function decleration~~

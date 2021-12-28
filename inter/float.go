@@ -82,6 +82,10 @@ func (f Float) Lte(other IType) bool {
 	}
 }
 
+func (f Float) Bool() bool {
+	return f.Value != 0
+}
+
 func NewFloat(v float64) *Float {
 	return &Float{Value: v, Proto: NewObject(ObjectValue{})}
 }
